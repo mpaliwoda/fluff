@@ -5,11 +5,8 @@ type InvoiceParams = {
   invoiceId: string;
 };
 
-type DeleteInvoiceButtonParams = {
-  invoiceNumber: number;
-};
 
-function DeleteInvoiceButton(props: DeleteInvoiceButtonParams) {
+function DeleteInvoiceButton(props: {invoiceNumber: number}) {
   const navigate = useNavigate();
   return (
     <button
