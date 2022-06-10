@@ -6,18 +6,20 @@ pub enum LogLevel {
     Error,
     Debug,
 }
+
+impl LogLevel {
+    pub fn to_str(&self) -> &str {
+        match self {
+            LogLevel::Info => "INFO",
+            LogLevel::Warning => "WARNING",
+            LogLevel::Error => "ERROR",
+            LogLevel::Debug => "DEBUG",
+        }
+    }
+}
 /// primary function for emitting logs
 pub fn log(level: LogLevel, message: &str) -> String {
-    let stringified_level = match level {
-        LogLevel::Info => "INFO",
-        LogLevel::Warning => "WARNING",
-        LogLevel::Error => "ERROR",
-        LogLevel::Debug => "DEBUG",
-    };
-
-    let log_message = format!("[{}]: {}", stringified_level, message);
-
-    return String::from(log_message);
+    return format!("[{}]: {}", level.to_str(), message);
 }
 pub fn info(message: &str) -> String {
     return log(LogLevel::Info, message);
